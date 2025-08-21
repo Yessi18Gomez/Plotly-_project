@@ -23,3 +23,29 @@ if hist_button:
     # Mostrar el gráfico Plotly interactivo en la aplicación Streamlit
     # 'use_container_width=True' ajusta el ancho del gráfico al contenedor
     st.plotly_chart(fig, use_container_width=True)
+
+# Crear otro botón en la aplicación Streamlit
+grafic_button = st.button('Construir grafico de dispersion')
+# Lógica a ejecutar cuando se hace clic en el botón
+if grafic_button:
+    # Escribir un mensaje en la aplicación
+    st.write('Creación de un graficop de dispersion para el conjunto de datos de anuncios de venta de coches')
+
+    # Crear un grafico de dispersion utilizando plotly.graph_objects
+    # Se crea una figura vacía y luego se añade un rastro 
+    fig = go.Figure(data=go.Scatter(
+        x=car_data['odometer'],
+        y=car_data['price'],
+        mode='markers',  # 'lines', 'markers' o 'lines+markers'
+        marker=dict(size=6, opacity=0.6)
+    ))
+    # Opcional: Puedes añadir un título al gráfico si lo deseas
+    fig.update_layout(
+        title='Dispersión: Odómetro vs Precio',
+        xaxis_title='Kilometraje (odometer)',
+        yaxis_title='Precio'
+    )
+
+    # Mostrar el gráfico Plotly interactivo en la aplicación Streamlit
+    # 'use_container_width=True' ajusta el ancho del gráfico al contenedor
+    st.plotly_chart(fig, use_container_width=True)
